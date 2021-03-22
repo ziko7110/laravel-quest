@@ -14,4 +14,6 @@
         @endif
     </div>
 
+    @include('users.users', ['users'=>$users])
+
 @endsection
