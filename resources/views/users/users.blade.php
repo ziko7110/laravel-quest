@@ -13,7 +13,6 @@
         @if($loop->iteration % 3 == 1 && $loop->iteration != 1)
     
             </div>
-           
             <div class="row text-center mt-3">
         
         @endif
@@ -35,7 +34,7 @@
                                 {{ $movie->comment }}
                         @endif
                     </p>
-
+                    @include('follow.follow_button',['user'=>$user])
                 </div>
                 
             </div>
