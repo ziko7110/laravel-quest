@@ -20,4 +20,30 @@ class MoviesController extends Controller
         
         return view('movies.create', $data);
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'url' => 'required|max:11',
+            'comment' => 'max:36',
+        ]);
+
+        $request->user()->movies()->create([
+            'url' => $request->url,
+            'comment' => $request->comment,
+        ]);
+
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        $movie = Movie::find($id);
+
+        if (\Auth::id() == $movie->user_id) {
+            $movie->delete();
+        }
+
+        return back();
+    }
 }
