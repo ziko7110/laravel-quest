@@ -12,9 +12,9 @@ class MoviesController extends Controller
     {
         $user = \Auth::user();
         $movies = $user->movies()->orderBy('id', 'desc')->paginate(9);
-        
+
         $data=[
-            'user' => $user,
+            'user'   => $user,
             'movies' => $movies,
         ];
         
@@ -39,7 +39,6 @@ class MoviesController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
-
         if (\Auth::id() == $movie->user_id) {
             $movie->delete();
         }
